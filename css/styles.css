@@ -1,0 +1,184 @@
+* {
+    box-sizing: border-box;
+    /* to have the footer displayed at the bottom of the page without scrolling */
+  }
+  
+  :root {
+    --header-color: #a7dcdf;
+    --footer-color: lightgray;
+    --primary-color: #f6871f;
+    --secondary-color: #357b70;
+    --a-visted: #363636;
+    --a-active: #f27581;
+    --grid-color: #009D70;
+    --font-size: 16px;
+  }
+  
+  body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: var(--font-size);
+    /* Sets the font size to 16px */
+    line-height: 1.6;
+    /* Sets the line-height to 1.6 */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .page-header {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    background-color: var(--header-color);
+    font-weight: 700;
+  }
+  
+  .page-header__item {
+    flex: 0 1 200px;
+  }
+  
+  .page-header__item:last-child {
+    flex-grow: 1;
+    text-align: right;
+  }
+  
+  .navigation-list {
+    list-style-type: none;
+  }
+  
+  .navigation-list li {
+    display: inline-block;
+    margin-left: 15px;
+  }
+  
+  div {
+    padding: 0px;
+    /* Adds a XXpx inner spacing to all sides*/
+    margin: 0px;
+    /* Adds a XXpx outer spacing to all sides*/
+  }
+  
+  .profile {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .profile__portrait {
+    float: left;
+    width: 250px;
+    margin-right: 40px;
+    border-radius: 50%;
+  }
+  
+  .nav {
+    text-align: left;
+  }
+  
+   /* ----------Headings---------- */
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+  }
+  
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  
+  a {
+    color: var(--primary-color);
+  }
+  
+  /* ------------Button and link colors---------- */
+  a:hover {
+    /* No underlining when hovering over a link */
+    text-decoration: none;
+  }
+  
+  a:visited {
+    /* visited link */
+    color: var(--a-visted);
+  }
+  
+  a:active {
+    /* selected link */
+    color: var(--a-active);
+  }
+  
+  a:hover,
+  a:focus {
+    /* No underlining when hovering over a link */
+    text-decoration: none;
+  }
+  
+  .button,
+  button {
+    /* overwrites browser defaults and resets the border */
+    border: none;
+    display: inline-block;
+    /* takes the font from the outer container */
+    font-family: inherit;
+    /* styles the button */
+    background-color: var(--primary-color);
+    color: #363636;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 3px;
+    /* width of the border, type, color */
+    border-bottom: 2px solid #0000004d;
+    transition: 0.5s opacity;
+  }
+  
+  button:hover,
+  button:focus,
+  .button:hover,
+  .button:focus {
+    /* lets the mouse appear as a hand when hovering over the button */
+    cursor: pointer;
+    /* reduces the opacity of the button to 80% */
+    opacity: 0.8;
+  }
+  
+  /* ----------Footer---------- */
+  .page-footer {
+    clear: both;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  /* ----------Media/Screen Conditions--------- */
+  @media all and (max-width: 500px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media all and (min-width: 500px) and (max-width: 750px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media all and (max-width: 750px) {
+    .grid {
+      grid-gap: 10px;
+    }
+  
+    .grid__item:last-child {
+      grid-column: auto / auto;
+      grid-row: auto / auto;
+    }
+  
+    h1 {
+      font-size: 22px;
+    }
+  }
