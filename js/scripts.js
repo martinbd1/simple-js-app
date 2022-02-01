@@ -42,6 +42,9 @@ console.log(pokemonList);
 // a for statement that list the pokemons name and (height)
 
 for (let i = 0; i < pokemonList.length; i++) {
-    document.write("<p>" + pokemonList[i].name + " (height:" + pokemonList[i].height + ") </p>");
+    if (pokemonList[i].height > 1) {
+        document.write("<p>" + pokemonList[i].name + " (height:" + pokemonList[i].height + ") - Wow, that's big!</p>");
+    } else {
+        document.write("<p>" + pokemonList[i].name + " (height:" + pokemonList[i].height + ")</p>");
     }
-
+}
