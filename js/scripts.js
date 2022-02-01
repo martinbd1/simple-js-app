@@ -1,3 +1,5 @@
+// List of pokemon, thier 0name 1height and 2type, some pokemon have more than one type
+
 let pokemonList = [{
         name: "Bulbasaur",
         height: 0.7,
@@ -36,6 +38,8 @@ let pokemonList = [{
 ];
 
 console.log(pokemonList);
+
+// a for statement that list the pokemons name and (height)
 
 for (let i = 0; i < pokemonList.length; i++) {
     document.write("<p>" + pokemonList[i].name + " (height:" + pokemonList[i].height + ") </p>");
