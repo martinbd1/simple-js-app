@@ -2,12 +2,12 @@ let pokemonList = [{
         name: "Bulbasaur",
         height: 0.7,
         type: ["grass", "poison"]
-    },    
+    },
     {
         name: "Ivysaur",
         height: 1,
         type: ["grass", "poison"]
-    },    
+    },
     {
         name: "Venusaur",
         height: 2,
@@ -36,3 +36,8 @@ let pokemonList = [{
 ];
 
 console.log(pokemonList);
+
+for (let i = 0; i < pokemonList.length; i++) {
+    document.write("<p>" + pokemonList[i].name + " (height:" + pokemonList[i].height + ") </p>");
+    }
+
