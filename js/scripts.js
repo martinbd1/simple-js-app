@@ -2,6 +2,16 @@ let pokemonList = [{
         name: "Bulbasaur",
         height: 0.7,
         type: ["grass", "poison"]
+    },    
+    {
+        name: "Ivysaur",
+        height: 1,
+        type: ["grass", "poison"]
+    },    
+    {
+        name: "Venusaur",
+        height: 2,
+        type: ["grass", "poison"]
     },
     {
         name: "Charmander",
@@ -13,4 +23,16 @@ let pokemonList = [{
         height: 0.5,
         type: ["water"]
     },
+    {
+        name: "Caterpie",
+        height: 0.3,
+        type: ["bug"]
+    },
+    {
+        name: "Weedle",
+        height: 0.3,
+        type: ["bug", "poison"]
+    },
 ];
+
+console.log(pokemonList);
