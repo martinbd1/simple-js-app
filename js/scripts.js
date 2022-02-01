@@ -39,7 +39,7 @@ let pokemonList = [{
 
 console.log(pokemonList);
 
-// a for statement that list the pokemons name and (height)
+// a for statement that list the pokemons name and (height) and notes bigs ones
 
 for (let i = 0; i < pokemonList.length; i++) {
     if (pokemonList[i].height > 1) {
