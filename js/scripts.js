@@ -39,35 +39,44 @@ let pokemonRepository = (function () {
         },
     ];
 
-    return {
-        add: function (pokemon) {
+    function add(pokemon) {
+        if (typeof (pokemon) === 'object') {
             pokemonList.push(pokemon);
-        },
-        getAll: function () {
-            return pokemonList;
+            console.log(pokemon.name + ' was added to the Pokédex successfully!')
+        } else {
+            console.log('Entry was not valid, please try again.')
         }
+    };
+
+    function getAll() {
+        return pokemonList;
+    };
+
+    return {
+        getAll: getAll,
+        add: add
     };
 
 })();
 
+//pre
 console.log(pokemonRepository.getAll());
 
-//Adds a new pokemon and attributes to the Array
+//Adds a new pokemon to the Array
 pokemonRepository.add({
-    name: "Pikachu",
+    name: 'Pikachu',
     height: 0.4,
     type: ["electric"]
 });
 
+//post
 console.log(pokemonRepository.getAll());
 
-// a forEach loop that list the pokemons name and (height) and notes bigs ones
-function pokemonLoop(pokemon) {
-
+// a forEach loop that list the pokemons name and (height) and notes big ones
+pokemonRepository.getAll().forEach(function (pokemon) {
     if (pokemon.height > 1) {
-        document.write("<p>" + pokemon.name + " (height:" + pokemon.height + ") - Wow, that's big!</p>");
+        document.write("<p>this is " + pokemon.name + ", and it is" + pokemon.height + " meters tall - Wow, that's big!</p>");
     } else {
-        document.write("<p>" + pokemon.name + " (height:" + pokemon.height + ")</p>");
+        document.write("<p>this is " + pokemon.name + ", and it is " + pokemon.height + "meters tall.</p>");
     }
-}
-pokemonRepository.getAll().forEach(pokemonLoop);
+});
