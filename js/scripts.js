@@ -39,12 +39,23 @@ let pokemonList = [{
 
 console.log(pokemonList);
 
-// a for statement that list the pokemons name and (height) and notes bigs ones
 
-for (let i = 0; i < pokemonList.length; i++) {
-    if (pokemonList[i].height > 1) {
-        document.write("<p>" + pokemonList[i].name + " (height:" + pokemonList[i].height + ") - Wow, that's big!</p>");
+// a forEach loop that list the pokemons name and (height) and notes bigs ones
+
+// pokemonList.forEach(function(pokemon) {
+//     if (pokemon.height > 1) {
+//         document.write("<p>" + pokemon.name + " (height:" + pokemon.height + ") - Wow, that's big!</p>");
+//     } else {
+//         document.write("<p>" + pokemon.name + " (height:" + pokemon.height + ")</p>");
+//     }
+// })
+
+function pokemonLoop(pokemon) {
+
+    if (pokemon.height > 1) {
+        document.write("<p>" + pokemon.name + " (height:" + pokemon.height + ") - Wow, that's big!</p>");
     } else {
-        document.write("<p>" + pokemonList[i].name + " (height:" + pokemonList[i].height + ")</p>");
+        document.write("<p>" + pokemon.name + " (height:" + pokemon.height + ")</p>");
     }
 }
+pokemonList.forEach(pokemonLoop);
