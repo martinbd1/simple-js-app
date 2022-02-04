@@ -39,25 +39,6 @@ let pokemonRepository = (function () {
         },
     ];
 
-// a forEach loop that list the pokemons name and (height) and notes bigs ones
-
-// pokemonList.forEach(function(pokemon) {
-//     if (pokemon.height > 1) {
-//         document.write("<p>" + pokemon.name + " (height:" + pokemon.height + ") - Wow, that's big!</p>");
-//     } else {
-//         document.write("<p>" + pokemon.name + " (height:" + pokemon.height + ")</p>");
-//     }
-// })
-
-// function pokemonLoop(pokemon) {
-//     if (pokemon.height > 1) {
-//         document.write("<p>" + pokemon.name + " (height:" + pokemon.height + ") - Wow, that's big!</p>");
-//     } else {
-//         document.write("<p>" + pokemon.name + " (height:" + pokemon.height + ")</p>");
-//     }
-// }
-// pokemonList.forEach(pokemonLoop);
-
     return {
         add: function (pokemon) {
             pokemonList.push(pokemon);
