@@ -52,31 +52,38 @@ let pokemonRepository = (function () {
         return pokemonList;
     };
 
+    function addListItem(pokemon) {
+        let pokemonList = document.querySelector(".pokemon-list");
+        let listpokemon = document.createElement("li");
+        let button = document.createElement("button");
+        button.innerText = pokemon.name;
+        button.classList.add("button-class")
+        listpokemon.appendChild(button);
+        pokemonList.appendChild(listpokemon);
+    }
+
     return {
         getAll: getAll,
-        add: add
+        add: add,
+        addListItem: addListItem
     };
 
 })();
 
-//pre
+//pre add
 console.log(pokemonRepository.getAll());
 
 //Adds a new pokemon to the Array
 pokemonRepository.add({
-    name: 'Pikachu',
+    name: "Pikachu",
     height: 0.4,
     type: ["electric"]
 });
 
-//post
+//post add
 console.log(pokemonRepository.getAll());
 
 // a forEach loop that list the pokemons name and (height) and notes big ones
 pokemonRepository.getAll().forEach(function (pokemon) {
-    if (pokemon.height > 1) {
-        document.write("<p>this is " + pokemon.name + ", and it is" + pokemon.height + " meters tall - Wow, that's big!</p>");
-    } else {
-        document.write("<p>this is " + pokemon.name + ", and it is " + pokemon.height + "meters tall.</p>");
-    }
+    pokemonRepository.addListItem(pokemon)
 });
