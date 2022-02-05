@@ -1,7 +1,7 @@
 // List of pokemon, thier 0name 1height and 2type, some pokemon have more than one type
 
 let pokemonRepository = (function () {
-    //Now wrappped in an IIED
+    //Now wrappped in an IIFE
     let pokemonList = [{
             name: "Bulbasaur",
             height: 0.7,
@@ -38,6 +38,8 @@ let pokemonRepository = (function () {
             type: ["bug", "poison"]
         },
     ];
+    //OUside of IIFE
+
 
     function add(pokemon) {
         if (typeof (pokemon) === 'object') {
@@ -58,8 +60,13 @@ let pokemonRepository = (function () {
         let button = document.createElement("button");
         button.innerText = pokemon.name;
         button.classList.add("button-class")
+        button.addEventListener('click', showDetails);
         listpokemon.appendChild(button);
         pokemonList.appendChild(listpokemon);
+    }
+
+    function showDetails(pokemon) {
+        console.log(pokemon);
     }
 
     return {
