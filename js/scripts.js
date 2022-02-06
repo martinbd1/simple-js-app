@@ -38,11 +38,15 @@ let pokemonRepository = (function () {
             type: ["bug", "poison"]
         },
     ];
-    //OUside of IIFE
+    //Outside of IIFE
 
-
+    //Checks if pokemon is valid object to add it to the list
     function add(pokemon) {
-        if (typeof (pokemon) === 'object') {
+        if (typeof (pokemon) === 'object' &&
+            "name" in pokemon &&
+            "height" in pokemon &&
+            "type" in pokemon
+        ) {
             pokemonList.push(pokemon);
             console.log(pokemon.name + ' was added to the Pokédex successfully!')
         } else {
