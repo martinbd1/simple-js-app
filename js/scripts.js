@@ -54,7 +54,7 @@ let pokemonRepository = (function () {
         return pokemonList;
     };
 
-    // function that creates a button as list for pokemon
+    // function that creates a list as buttons of pokemon
     function addListItem(pokemon) {
         let pokemonList = document.querySelector(".pokemon-list");
         let listpokemon = document.createElement("li");
@@ -64,7 +64,7 @@ let pokemonRepository = (function () {
         listpokemon.appendChild(button);
         pokemonList.appendChild(listpokemon);
         // function to add an event listener to a button that pass details of the pokemon when the button is clicked
-        button.addEventListener('click', function () {
+        button.addEventListener("click", function () {
             showDetails(pokemon);
         });
     }
@@ -81,9 +81,6 @@ let pokemonRepository = (function () {
 
 })();
 
-//pre add
-console.log(pokemonRepository.getAll());
-
 //Adds a new pokemon to the Array
 pokemonRepository.add({
     name: "Pikachu",
@@ -91,7 +88,6 @@ pokemonRepository.add({
     type: ["electric"]
 });
 
-//post add
 console.log(pokemonRepository.getAll());
 
 // a forEach loop that list the pokemons name and (height) and notes big ones
