@@ -27,10 +27,14 @@ let pokemonRepository = (function () {
         let pokemonList = document.querySelector(".pokemon-list");
         let listpokemon = document.createElement("li");
         let button = document.createElement("button");
-        button.innerText = pokemon.name;
-        button.classList.add("button-class")
-        listpokemon.appendChild(button);
-        pokemonList.appendChild(listpokemon);
+        
+        button.innerText = pokemon.name;                    // button text/description is the "name" of the pokemon
+        button.classList.add("btn-primary", "button-class") // Bootstrap 'btn-primary' class
+        
+        listpokemon.classList.add('group-list-item');       // 'group-list-item' Bootstrap as a class added to the listpokemon         
+        listpokemon.appendChild(button);                    // button is added to the item list
+        pokemonList.appendChild(listpokemon);               
+       
         // function to add an event listener to a button that pass details of the pokemon when the button is clicked
         button.addEventListener("click", function () {
             showDetails(pokemon);
@@ -62,86 +66,60 @@ let pokemonRepository = (function () {
             return response.json();
         }).then(function (details) {
             // Now we add the details to the item
-            item.imageUrl = details.sprites.front_default;
+            item.imageUrlFront = details.sprites.front_default;
+            item.imageUrlBack = details.sprites.back_default;
             item.height = details.height;
+            item.weight = details.weight;
             item.types = details.types;
+            item.abilities = details.abilities;
         }).catch(function (e) {
             console.error(e);
         });
     }
 
-       
     //function that load the pokemon api into the modal
     function showDetails(pokemon) {
         pokemonRepository.loadDetails(pokemon).then(function () {
-            showModal(pokemon.name, 'height: ' + pokemon.height, pokemon.imageUrl);
+            showModal(pokemon);
         });
     }
 
-    // Addding modal per 1.8
-    function showModal(title, text, img_src) {
-        let modalContainer = document.querySelector('#modal-container');
+    //Explanation: function to show a Modal with details about a pokemon.
+    function showModal(pokemon) {
+        let modalBody = $(".modal-body");
+        let modalTitle = $(".modal-title");
+        // let modalHeader = $(".modal-header");
+        // let $ModalContainter = $(#modal-containter)
+        // clear existing content of the model
+        // modalHeader.empty();
+        modalTitle.empty();
+        modalBody.empty();
 
-        // Clear preexisting content
-        modalContainer.innerHTML = '';
+        //creating element for nam in modal content
+        let nameElement = $("<h1>" + pokemon.name + "</h1>");
+        // // creating front img in modal content
+        let imageElementFront = $('<img class="modal-img" style=width:50%">');
+        imageElementFront.attr("src", pokemon.imageUrlFront);
+        // // creating back img in modal content
+        let imageElementBack = $('<img class="modal-img" style=width:50%">');
+        imageElementBack.attr("src", pokemon.imageUrlBack);
+        // //create height element in modal content
+        let heightElement = $("<p>" + "height : " + pokemon.height + "</p>");
+        // //create height element in modal content
+        let weightElement = $("<p>" + "weight : " + pokemon.weight + "</p>");
+        // //creating element for the type in modal content
+        let typesElement = $("<p>" + "types : " + pokemon.types + "</p>");
+        // //creating element for the abilities in modal content
+        let abilitiesElement = $("<p>" + "abilities : " + pokemon.abilities + "</p>");
 
-        let modal = document.createElement('div');
-        modal.classList.add('modal');
-
-        // Add new modal content
-        let closeButtonElement = document.createElement('button');
-        closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'Close';
-
-        // Close modal when user clicks on 'Close'
-        closeButtonElement.addEventListener('click', hideModal);
-
-        let modalTitle = document.createElement('h1');
-        modalTitle.innerText = title;
-
-        let modalText = document.createElement('p');
-        modalText.innerText = text;
-
-        let modalImg = document.createElement('img')
-        modalImg.classList.add('modal-img');
-        modalImg.src = img_src;
-
-
-        modal.appendChild(closeButtonElement);
-        modal.appendChild(modalTitle);
-        modal.appendChild(modalText);
-        modal.appendChild(modalImg);
-        modalContainer.appendChild(modal);
-
-        // make modal visible
-        modalContainer.classList.add('is-visible');
-
-        // Close modal when user clicks on 'Close'
-        closeButtonElement.addEventListener('click', hideModal);
-
-        // Close modal when modal is open and user clicks outside of the modal
-        modalContainer.addEventListener('click', (e) => {
-            let target = e.target;
-            if (target === modalContainer) {
-                hideModal();
-            }
-        });
+        modalTitle.append(nameElement);
+        modalBody.append(imageElementFront);
+        modalBody.append(imageElementBack);
+        modalBody.append(heightElement);
+        modalBody.append(weightElement);
+        modalBody.append(typesElement);
+        modalBody.append(abilitiesElement);
     }
-
-    document.querySelector('#show-modal').addEventListener('click', function () {});
-
-    function hideModal() {
-        let modalContainer = document.querySelector('#modal-container');
-        modalContainer.classList.remove('is-visible');
-    }
-
-    // Close modal when modal is open and user clicks 'Escape'
-    window.addEventListener('keydown', (e) => {
-        let modalContainer = document.querySelector('#modal-container');
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-            hideModal();
-        }
-    });
 
     return {
         add: add,
