@@ -24,19 +24,23 @@ let pokemonRepository = (function () {
 
     // function that creates a list as buttons of pokemon
     function addListItem(pokemon) {
-        let pokemonList = document.querySelector(".pokemon-list");
+        let pokemonList = document.querySelector(".list-group");
         let listpokemon = document.createElement("li");
         let button = document.createElement("button");
-        
-        button.innerText = pokemon.name;                    // button text/description is the "name" of the pokemon
-        button.classList.add("btn-primary", "button-class") // Bootstrap 'btn-primary' class
-        
-        listpokemon.classList.add('group-list-item');       // 'group-list-item' Bootstrap as a class added to the listpokemon         
-        listpokemon.appendChild(button);                    // button is added to the item list
-        pokemonList.appendChild(listpokemon);               
+
+        button.innerText = pokemon.name;            // button text/description is the "name" of the pokemon
+        button.classList.add("btn-primary")         // Bootstrap 'btn-primary' class
+
+//        button.classList.add('pokemon-list', 'search-button'); //xxxxxxxxxxxxx
+        button.setAttribute("data-target", "#pokemonModal");
+        button.setAttribute("data-toggle", "modal");
+
+        listpokemon.classList.add("list-group-item"); // 'list-group-item' Bootstrap as a class added to the listpokemon         
+        listpokemon.appendChild(button);            // button is added to the item list
+        pokemonList.appendChild(listpokemon);
        
-        // function to add an event listener to a button that pass details of the pokemon when the button is clicked
-        button.addEventListener("click", function () {
+        
+        button.addEventListener("click", function () {  // function to add an event listener to a button that pass details of the pokemon when the button is clicked
             showDetails(pokemon);
         });
     }
@@ -70,8 +74,14 @@ let pokemonRepository = (function () {
             item.imageUrlBack = details.sprites.back_default;
             item.height = details.height;
             item.weight = details.weight;
-            item.types = details.types;
-            item.abilities = details.abilities;
+            item.types = [];
+            details.types.forEach(function (element) {
+                item.types.push(element.type.name);
+            })
+            item.abilities = [];
+            details.abilities.forEach(function (element) {
+                item.abilities.push(element.ability.name);
+            })
         }).catch(function (e) {
             console.error(e);
         });
@@ -88,28 +98,19 @@ let pokemonRepository = (function () {
     function showModal(pokemon) {
         let modalBody = $(".modal-body");
         let modalTitle = $(".modal-title");
-        // let modalHeader = $(".modal-header");
-        // let $ModalContainter = $(#modal-containter)
-        // clear existing content of the model
-        // modalHeader.empty();
+        
         modalTitle.empty();
         modalBody.empty();
 
-        //creating element for nam in modal content
+        //creating element for in modal content
         let nameElement = $("<h1>" + pokemon.name + "</h1>");
-        // // creating front img in modal content
         let imageElementFront = $('<img class="modal-img" style=width:50%">');
         imageElementFront.attr("src", pokemon.imageUrlFront);
-        // // creating back img in modal content
         let imageElementBack = $('<img class="modal-img" style=width:50%">');
         imageElementBack.attr("src", pokemon.imageUrlBack);
-        // //create height element in modal content
         let heightElement = $("<p>" + "height : " + pokemon.height + "</p>");
-        // //create height element in modal content
         let weightElement = $("<p>" + "weight : " + pokemon.weight + "</p>");
-        // //creating element for the type in modal content
         let typesElement = $("<p>" + "types : " + pokemon.types + "</p>");
-        // //creating element for the abilities in modal content
         let abilitiesElement = $("<p>" + "abilities : " + pokemon.abilities + "</p>");
 
         modalTitle.append(nameElement);
@@ -121,6 +122,17 @@ let pokemonRepository = (function () {
         modalBody.append(abilitiesElement);
     }
 
+    //search bar functionality https://www.w3schools.com/jquery/jquery_filters.asp
+    // $(document).ready(function () {
+    //     $("#pokemon-search").on("keyup", function () {
+    //         var value = $(this).val().toLowerCase();
+    //         $(".search-button").filter(function () {
+    //             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    //         });
+    //     });
+    // });
+
+    // these are created so you can access functions from the iife elsewhere in the code
     return {
         add: add,
         getAll: getAll,
