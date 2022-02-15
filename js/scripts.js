@@ -26,21 +26,19 @@ let pokemonRepository = (function () {
     function addListItem(pokemon) {
         let pokemonList = document.querySelector(".list-group");
         let listpokemon = document.createElement("li");
+        listpokemon.classList.add("list-group-item",); // 'list-group-item' Bootstrap as a class added to the listpokemon   
+
         let button = document.createElement("button");
-
-        button.innerText = pokemon.name;            // button text/description is the "name" of the pokemon
-        button.classList.add("btn-primary")         // Bootstrap 'btn-primary' class
-
-//        button.classList.add('pokemon-list', 'search-button'); //xxxxxxxxxxxxx
         button.setAttribute("data-target", "#pokemonModal");
         button.setAttribute("data-toggle", "modal");
+        button.innerText = pokemon.name[0].toUpperCase() + pokemon.name.substring(1) ; // button text/description is the "name" of the pokemon
+        button.classList.add("btn", "btn-primary") // Bootstrap 'btn-primary' class
+        button.classList.add('search-button'); //xxxxxxxxxxxxx
 
-        listpokemon.classList.add("list-group-item"); // 'list-group-item' Bootstrap as a class added to the listpokemon         
-        listpokemon.appendChild(button);            // button is added to the item list
+        listpokemon.appendChild(button); // button is added to the item list
         pokemonList.appendChild(listpokemon);
-       
-        
-        button.addEventListener("click", function () {  // function to add an event listener to a button that pass details of the pokemon when the button is clicked
+
+        button.addEventListener("click", function () { // function to add an event listener to a button that pass details of the pokemon when the button is clicked
             showDetails(pokemon);
         });
     }
@@ -98,15 +96,15 @@ let pokemonRepository = (function () {
     function showModal(pokemon) {
         let modalBody = $(".modal-body");
         let modalTitle = $(".modal-title");
-        
+
         modalTitle.empty();
         modalBody.empty();
 
         //creating element for in modal content
-        let nameElement = $("<h1>" + pokemon.name + "</h1>");
-        let imageElementFront = $('<img class="modal-img" style=width:50%">');
+        let nameElement = $("<h1>" + pokemon.name[0].toUpperCase() + pokemon.name.substring(1)  + "</h1>");
+        let imageElementFront = $('<img class="modal-img" style=width:50%" alt="pokemon front">');
         imageElementFront.attr("src", pokemon.imageUrlFront);
-        let imageElementBack = $('<img class="modal-img" style=width:50%">');
+        let imageElementBack = $('<img class="modal-img" style=width:50%" alt="pokemon back">');
         imageElementBack.attr("src", pokemon.imageUrlBack);
         let heightElement = $("<p>" + "height : " + pokemon.height + "</p>");
         let weightElement = $("<p>" + "weight : " + pokemon.weight + "</p>");
@@ -122,15 +120,15 @@ let pokemonRepository = (function () {
         modalBody.append(abilitiesElement);
     }
 
-    //search bar functionality https://www.w3schools.com/jquery/jquery_filters.asp
-    // $(document).ready(function () {
-    //     $("#pokemon-search").on("keyup", function () {
-    //         var value = $(this).val().toLowerCase();
-    //         $(".search-button").filter(function () {
-    //             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    //         });
-    //     });
-    // });
+    // // search bar functionality https://www.w3schools.com/jquery/jquery_filters.asp
+    $(document).ready(function () {
+        $("#pokemon-search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $(".search-button").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
 
     // these are created so you can access functions from the iife elsewhere in the code
     return {
