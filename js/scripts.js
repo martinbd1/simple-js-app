@@ -25,15 +25,16 @@ let pokemonRepository = (function () {
     // function that creates a list as buttons of pokemon
     function addListItem(pokemon) {
         let pokemonList = document.querySelector(".list-group");
-        let listpokemon = document.createElement("ul");
-        listpokemon.classList.add("list-group-item",); // 'list-group-item' Bootstrap as a class added to the listpokemon   
-
         let button = document.createElement("button");
+        let listpokemon = document.createElement("div");
+        
+        button.classList.add("list-group-item", "list-group-item-action", "search-button"); // 'list-group-item' Bootstrap as a class added to the listpokemon   
+        
         button.setAttribute("data-target", "#pokemonModal");
         button.setAttribute("data-toggle", "modal");
+        
         button.innerText = pokemon.name[0].toUpperCase() + pokemon.name.substring(1) ; // button text/description is the "name" of the pokemon
         button.classList.add("btn", "btn-primary") // Bootstrap 'btn-primary' class
-        button.classList.add('search-button'); //xxxxxxxxxxxxx
 
         listpokemon.appendChild(button); // button is added to the item list
         pokemonList.appendChild(listpokemon);
