@@ -25,7 +25,7 @@ let pokemonRepository = (function () {
     // function that creates a list as buttons of pokemon
     function addListItem(pokemon) {
         let pokemonList = document.querySelector(".list-group");
-        let listpokemon = document.createElement("li");
+        let listpokemon = document.createElement("ul");
         listpokemon.classList.add("list-group-item",); // 'list-group-item' Bootstrap as a class added to the listpokemon   
 
         let button = document.createElement("button");
