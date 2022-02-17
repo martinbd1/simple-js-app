@@ -27,13 +27,13 @@ let pokemonRepository = (function () {
         let pokemonList = document.querySelector(".list-group");
         let button = document.createElement("button");
         let listpokemon = document.createElement("div");
-        
+
         button.classList.add("list-group-item", "list-group-item-action", "search-button"); // 'list-group-item' Bootstrap as a class added to the listpokemon   
-        
+
         button.setAttribute("data-target", "#pokemonModal");
         button.setAttribute("data-toggle", "modal");
-        
-        button.innerText = pokemon.name[0].toUpperCase() + pokemon.name.substring(1) ; // button text/description is the "name" of the pokemon
+
+        button.innerText = pokemon.name[0].toUpperCase() + pokemon.name.substring(1); // button text/description is the "name" of the pokemon
         button.classList.add("btn", "btn-primary") // Bootstrap 'btn-primary' class
 
         listpokemon.appendChild(button); // button is added to the item list
@@ -102,7 +102,7 @@ let pokemonRepository = (function () {
         modalBody.empty();
 
         //creating element for in modal content
-        let nameElement = $("<h1>" + pokemon.name[0].toUpperCase() + pokemon.name.substring(1)  + "</h1>");
+        let nameElement = $("<h1>" + pokemon.name[0].toUpperCase() + pokemon.name.substring(1) + "</h1>");
         let imageElementFront = $('<img class="modal-img" style=width:50%" alt="pokemon front">');
         imageElementFront.attr("src", pokemon.imageUrlFront);
         let imageElementBack = $('<img class="modal-img" style=width:50%" alt="pokemon back">');
